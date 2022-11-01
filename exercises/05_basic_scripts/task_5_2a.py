@@ -49,3 +49,34 @@ bin_ip = "00001010000000010000000111000011"
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+ip=input('ввод IP-сети в формате: 10.1.1.3/24: ')
+
+
+template='''
+Network:
+{0:<10}{1:<10}{2:<10}{3:<10}
+{0:08b}  {1:08b}  {2:08b}  {3:08b}
+
+Mask:
+/{4:<}
+{5:<10}{6:<10}{7:<10}{8:<10}
+{5:08b}  {6:08b}  {7:08b}  {8:08b}
+'''
+#10.1.1.3/24
+
+ip=ip.split('.')
+ip1,ip2,ip3,ip4=int(ip[0]),int(ip[1]),int(ip[2]),ip[3]
+ip4, pref=int(ip4.split('/')[0]), ip4.split('/')[1]
+#pref=24
+pref_str=pref
+pref_A=int(pref)
+pref_end=32-pref_A
+pref="1" * pref_A + "0" * pref_end
+pref1,pref2,pref3,pref4=int(pref[0:8], 2), int(pref[8:16], 2), int(pref[16:24], 2), int(pref[24::], 2)
+
+bin_ip='{:08b}{:08b}{:08b}{:08b}'.format(ip1,ip2,ip3,ip4)
+bin_ip=bin_ip[0:pref_A]+'0'*pref_end
+
+ip1,ip2,ip3,ip4=int(bin_ip[0:8],2),int(bin_ip[8:16],2),int(bin_ip[16:24],2),int(bin_ip[24::],2)
+
+print(template.format(ip1,ip2,ip3,ip4,pref_str,pref1,pref2,pref3,pref4))
