@@ -16,3 +16,10 @@
 """
 
 mac = "AAAA:BBBB:CCCC"
+
+mac=mac.replace(':','')
+string1='{:b}{:b}{:b}{:b}{:b}{:b}{:b}{:b}{:b}{:b}{:b}{:b}'.format(int(mac[0], 16), int(mac[1], 16), int(mac[2], 16),
+int(mac[3], 16), int(mac[4], 16), int(mac[5], 16),
+int(mac[6], 16), int(mac[7], 16), int(mac[8], 16),
+int(mac[9], 16), int(mac[10], 16), int(mac[11], 16))
+print(string1)
