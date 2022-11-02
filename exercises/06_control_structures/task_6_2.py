@@ -12,3 +12,16 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+
+ip=input('введите айпи в формате 10.0.1.1: ')
+ip_list=ip.split('.')
+if int(ip_list[0])>1 and int(ip_list[0])<224:
+  print('unicast')
+elif int(ip_list[0])>223 and int(ip_list[0])<240:
+  print('multicast')
+elif ip=='0.0.0.0':
+  print('unassigned')
+elif ip=='255.255.255.255':
+  print('local broadcast')
+else:
+  print('unused')
