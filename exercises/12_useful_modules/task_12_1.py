@@ -17,3 +17,19 @@ IP-адрес считается доступным, если выполнени
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+import subprocess
+alive_ip=[]
+dead_ip=[]
+def ping_ip_addresses(ip_list):
+    for ip in ip_list:
+      ping_X=subprocess.run(['ping', ip, '-c', '2'])
+      if ping_X.returncode==0:
+          alive_ip.append(ip)
+      else:
+           dead_ip.append(ip)
+    return alive_ip, dead_ip
+
+if __name__=='__main__':
+        list_of_ips = ["1.1.1.1", "8.8.8.8", "8.8.4.4", "8.8.7.1"]
+        a=ping_ip_addresses(list_of_ips)
+        print(a)
